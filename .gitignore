@@ -1,0 +1,7 @@
+# ESPHome
+secrets.yaml
+.esphome/
+*.bin
+
+# OS
+.DS_Store
