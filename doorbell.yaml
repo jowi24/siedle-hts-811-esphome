@@ -22,6 +22,11 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
+  # Schwächste akzeptierte WLAN-Verschlüsselung. Ab ESPHome 2026.6.0 ist WPA2
+  # (AES) Standard; hier explizit gesetzt, um TKIP/WPA zu vermeiden und die
+  # Warnung zu unterdrücken. Falls der Router nur WPA kann: auf "WPA" ändern.
+  min_auth_mode: WPA2
+
   # Fallback-Hotspot (Captive Portal), falls die WLAN-Verbindung fehlschlägt
   ap:
     ssid: "Doorbell Fallback Hotspot"
