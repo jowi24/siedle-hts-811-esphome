@@ -118,8 +118,24 @@ damit die interne LED nicht in Sperrrichtung überlastet wird.
 Ein **LM2596** Step-Down-Wandler erzeugt aus der Anlagenspannung die Versorgung für den
 ESP8266.
 
-> TODO: Eingangsspannung (welche Ader?), Ausgangsspannung und Stromaufnahme des ESP im
-> WLAN-Betrieb dokumentieren – als Beleg, dass der 1+n-Bus / andere Innenstationen nicht
+Gespeist wird die Anlage im Haus zentral aus einem **Siedle NG 602-01**
+Netzgleichrichter (im Keller-Schaltschrank, „Netz Sprechanlage"):
+
+| Ausgang        | Spannung | Strom  | Verwendung                          |
+|----------------|----------|--------|-------------------------------------|
+| `– +`          | 23,3 V   | 0,3 A  | Anlagen-/Sprechspannung (1+n-Bus)   |
+| `b, c`         | 12 V     | 1,6 A  | u. a. Türsummer / Etagengong        |
+
+Primär 230 V~ 50/60 Hz, 41 VA, Feinsicherung T200 mA.
+
+![Siedle NG 602-01 Netzgleichrichter im Keller-Schaltschrank (23,3 V / 12 V Ausgänge)](images/netzteil-keller.jpg)
+
+Der ESP wird über den LM2596 aus dieser vorhandenen Anlagenspannung mitversorgt – kein
+zusätzliches Steckernetzteil, und weil der Wandler hochohmig nur wenige mA zieht, bleibt
+für die Nachbar-Innenstationen praktisch alles wie vorher.
+
+> TODO: Exakte Eingangsader am LM2596 und die gemessene Stromaufnahme des ESP im
+> WLAN-Betrieb ergänzen – als Beleg, dass der 1+n-Bus / andere Innenstationen nicht
 > belastet werden.
 
 ## Ausgangsstufe (Tasten drücken)
@@ -128,6 +144,14 @@ Türöffner und Licht werden **parallel zur vorhandenen Taste** geschaltet – d
 „drückt" den Knopf für ~500 ms. Umgesetzt über **diskrete Transistoren** (low-side): ein
 Basiswiderstand vom ESP-Pin, der Transistor schaltet den Tastenkontakt gegen die
 gemeinsame Masse (die über den LM2596 mit der Anlage geteilt wird).
+
+Wichtig für den minimalinvasiven Ansatz: Angeschlossen wird **nicht direkt an den Tastern**,
+sondern an **zwei Prüfpunkten auf der Platinenrückseite** nahe dem zentralen IC. Diese
+Punkte sind mit den Tastenkontakten **durchverbunden** – per Multimeter ermittelt (Durchgang
+zur jeweiligen Taste). Das spart Löten an den mechanisch belasteten Tastern und lässt die
+Bedienung von Hand unverändert.
+
+![Rückseite der Siedle-Platine: zwei Prüfpunkte am zentralen IC, durchverbunden mit den Tastern Licht und Tür](images/platine-rueckseite.jpg)
 
 **Warum nicht die Frequenz nachbauen?** Bei 1+n sind „Tür öffnen" und „Licht" keine
 digitalen Befehle, sondern **aufmodulierte Tonfrequenzen** (~20–22 kHz) auf der
