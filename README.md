@@ -61,6 +61,11 @@ Es gibt kommerzielle Wege – die passen aber nicht zum Anspruch „lokal, minim
 DIY dagegen: **lokal in Home Assistant**, kein Konto, keine Cloud, wenige Euro
 Bauteile – und die vorhandene Anlage bleibt erhalten.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/sb6-vergleich-dark.png">
+  <img alt="Vergleich DIY (ESP + ESPHome) vs. Nuki Opener vs. Siedle IQ HTS" src="docs/images/sb6-vergleich-light.png">
+</picture>
+
 ## Schnellstart
 
 1. `secrets.yaml.example` nach `secrets.yaml` kopieren und eigene Werte eintragen.

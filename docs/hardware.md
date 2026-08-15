@@ -178,13 +178,6 @@ Tastenkontakt.
 
 > TODO: Konkrete Bauteilwerte (Transistortyp, Basiswiderstand) im Schaltbild ergänzen.
 
-## Einordnung: DIY vs. Fertiglösungen
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="images/sb6-vergleich-dark.png">
-  <img alt="Vergleich DIY (ESP + ESPHome) vs. Nuki Opener vs. Siedle IQ HTS" src="images/sb6-vergleich-light.png">
-</picture>
-
 ## Quellen & verwandte Projekte
 
 - [Siedle HTS 811-0 – Haustelefon Standard](https://www.siedle.de/de-de/produkte/hts-811-0-w-haustelefon-standard/)
