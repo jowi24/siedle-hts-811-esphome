@@ -25,6 +25,11 @@ Die Anlage selbst bleibt unverändert und voll funktionsfähig.
 > Sprechanlage. Ein Fehler auf der Busleitung würde die Anlage aller Nachbarn stören –
 > daher galvanische Trennung und kein direkter Eingriff in die Busleitung.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/sb5-fuenf-wohnungen-dark.png">
+  <img alt="Fünf Wohnungen an einer gemeinsamen Steigleitung – nur die eigene Wohnung greift minimal ab, die anderen vier bleiben unangetastet" src="images/sb5-fuenf-wohnungen-light.png">
+</picture>
+
 ## Aufbau (beschriftet)
 
 Gesamtübersicht im geöffneten Gehäuse – die Original-Siedle-Platine bleibt rechts
