@@ -45,6 +45,8 @@ binary_sensor:
         pullup: true
       inverted: true
     name: "Klingel Tür"
+    # Hinweis: D4 (GPIO2) ist ein Boot-Pin. Als Eingang problemlos, aber klingelt es
+    # exakt im Boot-Moment, startet der ESP nicht. Für Neuaufbauten besser D5/D6 nehmen.
     # Entprellung: Schaltfunken auf der Leitung sollen keine Geisterklingel auslösen
     filters:
       - delay_on: 50ms

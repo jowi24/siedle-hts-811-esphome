@@ -68,10 +68,19 @@ nachmessen bzw. anpassen.
 
 | Funktion         | Richtung | ESP-Pin | ESPHome                         |
 |------------------|----------|---------|---------------------------------|
-| Klingel Tür      | Eingang  | D4      | `binary_sensor` (pullup, inv.)  |
+| Klingel Tür      | Eingang  | D4 ⚠️   | `binary_sensor` (pullup, inv.)  |
 | Klingel Wohnung  | Eingang  | D5      | `binary_sensor` (pullup, inv.)  |
 | Licht            | Ausgang  | D1      | `switch` (500 ms Puls)          |
 | Türöffner        | Ausgang  | D2      | `switch` (500 ms Puls)          |
+
+> ⚠️ **Hinweis für Nachbauer – Klingel Tür lieber auf D5/D6 statt D4:**
+> D4 (GPIO2) ist ein Boot-Pin des ESP8266 und muss beim Start *high* sein. Als Eingang
+> läuft das hier seit Monaten problemlos – **aber** wenn es exakt im Moment des Bootens
+> klingelt (Pin wird gegen Masse gezogen), startet der ESP nicht. Passiert praktisch nie,
+> und diese Anlage bleibt so verlötet, wie sie ist. Wer neu aufbaut, nimmt für die Klingel
+> aber besser **D5 oder D6** (GPIO14/12) – die sind beim Booten unkritisch.
+> Ausgänge auf **D1/D2** (GPIO5/4) sind bewusst gewählt: beim Booten garantiert inaktiv,
+> sonst würde bei jedem Neustart kurz die Tür summen.
 
 ## Spannungsverlauf beim Türruf (1+n)
 
