@@ -52,9 +52,11 @@ die vier Kanäle am ESP (D4/D5 Eingänge, D1/D2 Ausgänge):
 Vier Kanäle plus Versorgung – galvanisch getrennt, damit der 1+n-Bus nicht belastet wird:
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="images/schaltbild-dark.png">
-  <img alt="Prinzip-Schaltbild mit vier Kanälen und LM2596-Versorgung" src="images/schaltbild.png">
+  <source media="(prefers-color-scheme: dark)" srcset="images/sb4-schaltbild-dark.png">
+  <img alt="Prinzip-Schaltbild mit vier Kanälen und LM2596-Versorgung" src="images/sb4-schaltbild-light.png">
 </picture>
+
+<sub>Detaillierte Einzelansicht (hochkant): <a href="images/schaltbild.png">schaltbild.png</a></sub>
 
 Das ist eine **Prinzipdarstellung**: Eingänge galvanisch getrennt per Optokoppler
 (mit Z-Diode bzw. Schutzdiode + Vorwiderstand), Ausgänge über **diskrete Transistoren**
