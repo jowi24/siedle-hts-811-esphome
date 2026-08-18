@@ -45,6 +45,9 @@ binary_sensor:
         pullup: true
       inverted: true
     name: "Klingel Tür"
+    # Entprellung: Schaltfunken auf der Leitung sollen keine Geisterklingel auslösen
+    filters:
+      - delay_on: 50ms
 
   - platform: gpio
     pin:
@@ -54,6 +57,8 @@ binary_sensor:
         pullup: true
       inverted: true
     name: "Klingel Wohnung"
+    filters:
+      - delay_on: 50ms
 
 # --- Steuern: vorhandene Tasten kurz "drücken" (500 ms Puls) ---
 switch:
@@ -61,6 +66,8 @@ switch:
     pin: D1
     id: light
     name: "Licht einschalten"
+    # nach Reboot/Stromausfall NICHT den letzten Zustand wiederherstellen
+    restore_mode: ALWAYS_OFF
     on_turn_on:
       - delay: 500ms
       - switch.turn_off: light
@@ -69,6 +76,8 @@ switch:
     pin: D2
     id: door
     name: "Tür öffnen"
+    # sicherheitskritisch: darf nach Reboot nie "an" bleiben -> Tür bliebe offen
+    restore_mode: ALWAYS_OFF
     on_turn_on:
       - delay: 500ms
       - switch.turn_off: door
