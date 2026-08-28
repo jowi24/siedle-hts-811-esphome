@@ -118,7 +118,8 @@ Sichere Wege (galvanische Trennung):
 ### Klingel Tür (Türruf an Klemme 1 + 7)
 
 Im Ruhezustand liegen dauerhaft ~18 V DC an – ein Optokoppler würde also permanent
-durchschalten. Trick: eine **Zener-Diode (~15–18 V) in Reihe** vor den Optokoppler.
+durchschalten. Trick: eine **Zener-Diode (~15–18 V) in Reihe** vor den Optokoppler
+(Kathode an Klemme 1, Anode zum Vorwiderstand).
 
 - Ruhezustand (~18 V): Zener sperrt bzw. lässt zu wenig durch → Optokoppler **aus**
 - Klingel-Peak (~24 V): Zener bricht durch → Optokoppler **an** → ESP erkennt „es klingelt"
@@ -210,4 +211,3 @@ Tastenkontakt.
   [simon42](https://www.simon42.com)
 - [SmartHome yourself](https://www.smarthomeyourself.de/) – „Make any doorbell smart with D1 Mini"
   (generische Klingel, gleiches Grundprinzip; hier speziell für den heiklen 1+n-Bus gelöst)
-
