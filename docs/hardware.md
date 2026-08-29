@@ -95,6 +95,21 @@ Gemessen zwischen Klemme **1** und **7**:
 
 Der Optokoppler erkennt genau diese Spannungsänderung – ein Protokoll ist nicht nötig.
 
+> ⚠️ **Wichtig: Die Busspannung ist lastabhängig.** Der Ruhewert von ~18 V oben gilt nur
+> **im eingebauten Zustand**, also mit angeschlossenem Haustelefon. Ohne Haustelefon liegt
+> deutlich mehr an, weil dann weniger Last am Bus hängt:
+>
+> | Messpunkt                                                    | Spannung | Bedingung                |
+> |---------------------------------------------------------------|----------|---------------------------|
+> | NG 602-01, Anlagenausgang                                     | 23,3 V   | Nennwert lt. Typenschild |
+> | Klemme 1/7, **ohne** Haustelefon, nur Zusatzplatine (19 mA)   | 21 V     | gemessen                 |
+> | Klemme 1/7, **mit** Haustelefon                                | 18 V     | gemessen (= Wert oben)   |
+>
+> Die Differenz zwischen 21 V und 18 V ist der Ruhestrom des Haustelefons – das zieht
+> deutlich mehr als die Zusatzplatine. Für die Auslegung der Z-Diode zählt **nur der Wert
+> im eingebauten Zustand (18 V)**. Wer ohne angeschlossenes Haustelefon misst, sieht 21 V
+> und legt die Z-Diode auf einen Pegel aus, den sie im Betrieb nie erreicht.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/sb2-spannungsverlauf-dark.png">
   <img alt="Spannungsverlauf am Türruf mit Z-Dioden-Schaltschwelle" src="images/sb2-spannungsverlauf-light.png">
@@ -145,6 +160,7 @@ Netzgleichrichter (im Keller-Schaltschrank, „Netz Sprechanlage"):
 |----------------|----------|--------|-------------------------------------|
 | `– +`          | 23,3 V   | 0,3 A  | Anlagen-/Sprechspannung (1+n-Bus)   |
 | `b, c`         | 12 V     | 1,6 A  | u. a. Türsummer / Etagengong        |
+| LM2596-Eingang | Klemme 1 + freie Ader | 19 mA | Versorgung ESP8266 (nicht 1/7!) |
 
 Primär 230 V~ 50/60 Hz, 41 VA, Feinsicherung T200 mA.
 
@@ -154,9 +170,14 @@ Der ESP wird über den LM2596 aus dieser vorhandenen Anlagenspannung mitversorgt
 zusätzliches Steckernetzteil, und weil der Wandler hochohmig nur wenige mA zieht, bleibt
 für die Nachbar-Innenstationen praktisch alles wie vorher.
 
-> TODO: Exakte Eingangsader am LM2596 und die gemessene Stromaufnahme des ESP im
-> WLAN-Betrieb ergänzen – als Beleg, dass der 1+n-Bus / andere Innenstationen nicht
-> belastet werden.
+Konkret liegt der LM2596-Eingang **nicht** an der Signalleitung 1/7 (die auch das
+Klingelsignal führt), sondern an den vollen ~23 V der Anlagenspannung: ein Pol an
+Klemme 1, der andere an einer Ader, die ungenutzt in der Hausverteilung lag. Gemessener
+Verbrauch der Gesamtschaltung: **19 mA bei 23 V**, also rund **0,44 W** – entsprechend
+gering ist die Zusatzlast auf dem Bus.
+
+> Ob eine freie Ader in der eigenen Hausverteilung liegt, ist installationsabhängig –
+> das ist der Teil dieser Lösung, der sich nicht überall 1:1 übertragen lässt.
 
 ## Ausgangsstufe (Tasten drücken)
 
